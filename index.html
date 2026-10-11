@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Selamat Ulang Tahun, Olivia Oktiana!</title>
+  <meta name="description" content="Website ulang tahun interaktif untuk Olivia Oktiana.">
+  <meta name="theme-color" content="#ffe14d">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🎂%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="is-locked">
+  <a class="skip-link" href="#hero">Lompat ke konten utama</a>
+  <canvas id="confetti" aria-hidden="true"></canvas>
+
+  <!-- OPENING SCREEN -->
+  <section id="opening" class="opening" aria-labelledby="opening-title">
+    <div class="opening__card">
+      <span class="tape tape--l" aria-hidden="true"></span>
+      <span class="tape tape--r" aria-hidden="true"></span>
+      <p class="sticker sticker--yellow">📬 Ada kejutan!</p>
+      <h1 id="opening-title" class="opening__title">
+        <span class="opening__line">Sesuatu spesial</span>
+        <span class="opening__line opening__line--name">untuk <span class="hl" data-bind="nickname">Olivia</span></span>
+      </h1>
+      <p class="opening__text">Website kecil ini dibuat khusus untuk merayakan harimu.</p>
+      <button type="button" class="btn btn--pink btn--big" id="open-btn">🎁 Buka</button>
+      <p class="opening__hint">Musik menyala setelah dibuka dan bisa dimatikan kapan saja.</p>
+    </div>
+  </section>
+
+
+  <button type="button" id="music-toggle" class="music-toggle" aria-pressed="false" aria-label="Putar musik" hidden>
+    <span aria-hidden="true">♪</span><span class="music-toggle__label">Musik: mati</span>
+  </button>
+
+  <main id="main" hidden>
+    <!-- HERO -->
+    <section id="hero" class="hero" aria-labelledby="hero-title" tabindex="-1">
+      <div class="hero__inner">
+        <p class="sticker sticker--mint rot-l">🎉 Happy Birthday</p>
+        <h2 id="hero-title" class="hero__title">
+          <span class="hero__line">Selamat</span>
+          <span class="hero__line hero__line--accent">Ulang Tahun,</span>
+          <span class="hero__name" data-bind="name">Olivia Oktiana</span>
+        </h2>
+        <p class="hero__tagline" id="hero-tagline"></p>
+        <p class="hero__date" id="hero-date" hidden></p>
+        <div class="hero__actions">
+          <button type="button" class="btn btn--yellow" id="hero-confetti">🎊 Hujan konfeti!</button>
+          <a class="btn btn--white" href="#galeri">Lihat scrapbook ↓</a>
+        </div>
+      </div>
+      <div class="hero__deco" aria-hidden="true">
+        <span class="blob blob--1"></span><span class="blob blob--2"></span>
+        <span class="star star--1">✦</span><span class="star star--2">★</span><span class="star star--3">✺</span>
+      </div>
+    </section>
+
+    <div class="marquee" aria-hidden="true"><div class="marquee__track" id="marquee"></div></div>
+
+    <!-- GALERI -->
+    <section id="galeri" class="section" aria-labelledby="galeri-title">
+      <header class="section__head">
+        <p class="kicker">01 — Scrapbook</p>
+        <h2 id="galeri-title" class="section__title">Galeri Polaroid</h2>
+        <p class="section__sub" id="galeri-sub">Ketuk foto untuk memperbesar.</p>
+      </header>
+      <ul class="polaroids" id="polaroids"></ul>
+    </section>
+
+    <!-- KARTU -->
+    <section id="kartu" class="section section--pink" aria-labelledby="kartu-title">
+      <header class="section__head">
+        <p class="kicker">02 — Apresiasi</p>
+        <h2 id="kartu-title" class="section__title">Kartu Apresiasi</h2>
+        <p class="section__sub">Ketuk atau tekan Enter pada kartu untuk membaliknya.</p>
+      </header>
+      <ul class="cards" id="cards"></ul>
+    </section>
+
+    <!-- SURAT -->
+    <section id="surat" class="section" aria-labelledby="surat-title">
+      <header class="section__head">
+        <p class="kicker">03 — Surat</p>
+        <h2 id="surat-title" class="section__title">Surat untuk Olivia</h2>
+      </header>
+      <div class="letter-wrap">
+        <button type="button" class="envelope" id="envelope" aria-expanded="false" aria-controls="letter">
+          <span class="envelope__flap" aria-hidden="true"></span>
+          <span class="envelope__body" aria-hidden="true">💌</span>
+          <span class="envelope__label">Buka surat</span>
+        </button>
+        <article id="letter" class="letter" hidden aria-labelledby="letter-greeting">
+          <span class="tape tape--l" aria-hidden="true"></span>
+          <p id="letter-greeting" class="letter__greeting"></p>
+          <div id="letter-body" class="letter__body"></div>
+          <p class="letter__closing" id="letter-closing"></p>
+          <p class="letter__sign" id="letter-sign"></p>
+        </article>
+      </div>
+    </section>
+
+    <!-- KEJUTAN -->
+    <section id="kejutan" class="section section--mint" aria-labelledby="kejutan-title">
+      <header class="section__head">
+        <p class="kicker">04 — Kejutan</p>
+        <h2 id="kejutan-title" class="section__title">Mini Birthday Surprise</h2>
+        <p class="section__sub" id="wish-prompt"></p>
+      </header>
+      <div class="cake" id="cake">
+        <div class="cake__candles" id="candles" role="group" aria-label="Lilin ulang tahun"></div>
+        <div class="cake__layer cake__layer--top" aria-hidden="true"></div>
+        <div class="cake__layer cake__layer--bottom" aria-hidden="true"></div>
+        <div class="cake__plate" aria-hidden="true"></div>
+      </div>
+      <div class="surprise__actions">
+        <button type="button" class="btn btn--pink" id="blow-all">💨 Tiup semua lilin</button>
+        <button type="button" class="btn btn--white" id="relight" hidden>🔥 Nyalakan lagi</button>
+      </div>
+      <p class="surprise__status" id="candle-status" role="status" aria-live="polite"></p>
+      <div class="surprise__final" id="final" hidden>
+        <p class="sticker sticker--yellow rot-r">✨ Semoga terkabul ✨</p>
+        <p id="final-text" class="surprise__final-text"></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" id="footer" hidden>
+    <p>Dibuat dengan ♥ untuk <span data-bind="name">Olivia Oktiana</span></p>
+    <button type="button" class="btn btn--white btn--small" id="to-top">↑ Kembali ke atas</button>
+  </footer>
+
+  <!-- LIGHTBOX -->
+  <dialog id="lightbox" class="lightbox" aria-labelledby="lb-caption">
+    <figure class="lightbox__fig">
+      <div class="lightbox__media" id="lb-media"></div>
+      <figcaption id="lb-caption"></figcaption>
+    </figure>
+    <button type="button" class="btn btn--yellow btn--small lightbox__close" id="lb-close" aria-label="Tutup foto">✕ Tutup</button>
+  </dialog>
+
+  <script src="js/config.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
